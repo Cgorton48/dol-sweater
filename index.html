@@ -154,9 +154,19 @@
             'images/ugly-11.png'
         ];
 
+        // Track current image index
+        let currentImageIndex = -1;
+
         // Function to load a random image
         function loadRandomImage() {
-            const randomIndex = Math.floor(Math.random() * images.length);
+            let randomIndex;
+            
+            // Ensure the new image is different from the current one
+            do {
+                randomIndex = Math.floor(Math.random() * images.length);
+            } while (randomIndex === currentImageIndex && images.length > 1);
+            
+            currentImageIndex = randomIndex;
             const imageElement = document.getElementById('randomImage');
             imageElement.src = images[randomIndex];
         }
